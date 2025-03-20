@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- Para pantallas grandes (layout derecho) -->
+        <div class="seccion-grande">
+            <div class="encabezado">Encabezado</div>
+            <div class="navegacion">Navegación</div>
+            <div class="seccion-productos">Seccion_Productos</div>
+            <div class="seccion-servicios">Seccion_Servicios</div>
+            <div class="enlaces">Enlaces</div>
+            <div class="pie-pagina">Pie de página</div>
+        </div>
+        
+        <!-- Para pantallas medianas (layout central) -->
+        <div class="seccion-media" style="display: none;">
+            <div class="encabezado">Encabezado</div>
+            <div class="nav">Nav</div>
+            <div class="seccion-productos">Seccion_Productos</div>
+            <div class="seccion-servicios">Seccion_Servicios</div>
+            <div class="pie-pagina">Pie de página</div>
+            <div class="enlaces">Enlaces</div>
+        </div>
+        
+        <!-- Para pantallas pequeñas (layout izquierdo) -->
+        <div class="seccion-pequena" style="display: none;">
+            <div class="encabezado">Encabezado</div>
+            <div class="navegacion">Navegación</div>
+            <div class="seccion-productos">Seccion_Productos</div>
+            <div class="seccion-servicios">Seccion_Servicios</div>
+            <div class="enlaces">Enlaces</div>
+            <div class="pie-pagina">Pie de página</div>
+        </div>
+    </div>
+
+    <script>
+        // Script para mostrar el layout correcto según el tamaño de pantalla
+        function adjustLayout() {
+            const width = window.innerWidth;
+            const grandeSection = document.querySelector('.seccion-grande');
+            const mediaSection = document.querySelector('.seccion-media');
+            const pequenaSection = document.querySelector('.seccion-pequena');
+            
+            if (width >= 992) {
+                grandeSection.style.display = 'grid';
+                mediaSection.style.display = 'none';
+                pequenaSection.style.display = 'none';
+            } else if (width >= 768 && width < 992) {
+                grandeSection.style.display = 'none';
+                mediaSection.style.display = 'grid';
+                pequenaSection.style.display = 'none';
+            } else {
+                grandeSection.style.display = 'none';
+                mediaSection.style.display = 'none';
+                pequenaSection.style.display = 'grid';
+            }
+        }
+        
+        // Ejecutar al cargar la página y cuando se cambia el tamaño
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+    </script>
+</body>
+</html>
